@@ -22,7 +22,9 @@ export default function NoteForm() {
   });
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target;
     setDraft({ [name]: value } as Partial<typeof draft>);
@@ -38,7 +40,7 @@ export default function NoteForm() {
   };
 
   const handleCancel = () => {
-    router.back();
+    router.back(); // draft НЕ очищаємо
   };
 
   return (
@@ -101,7 +103,7 @@ export default function NoteForm() {
           className={css.submitButton}
           disabled={mutation.isPending}
         >
-          Create note
+          {mutation.isPending ? 'Creating...' : 'Create note'}
         </button>
       </div>
     </form>
